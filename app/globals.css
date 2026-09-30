@@ -1,26 +1,156 @@
+/* ==========================================================================
+   TaskCurrent — "Calm Automation"
+   Tailwind CSS v4 theme, generated from design-tokens.json
+   ========================================================================== */
+
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* ---------- Fonts ---------- */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* ---------- Colors ---------- */
+  --color-ink: #101828;
+  --color-navy: #16213e;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --color-dark-canvas: #101828;
+  --color-dark-surface: #151f35;
+  --color-dark-surface-2: #1a2640;
+
+  --color-brand: #5267ff;
+  --color-brand-hover: #4054e8;
+  --color-brand-soft: #eef0ff;
+
+  --color-cyan: #28c6e5;
+  --color-mint: #39d5a5;
+  --color-violet: #8b6ef6;
+  --color-amber: #f4b740;
+
+  --color-background: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f1f4f9;
+
+  --color-border: #e4e9f0;
+  --color-border-strong: #d0d5dd;
+  --color-dark-border: #26334f;
+
+  --color-muted: #667085;   /* mutedText  → text-muted  */
+  --color-subtle: #98a2b3;  /* subtleText → text-subtle */
+
+  --color-success-bg: #ecfdf3;
+  --color-success-text: #067647;
+  --color-danger: #d92d20;
+
+  /* ---------- Gradients (use with bg-[image:var(--gradient-*)]) ---------- */
+  --gradient-brand: linear-gradient(135deg, #5267ff 0%, #8b6ef6 50%, #28c6e5 100%);
+  --gradient-headline: linear-gradient(90deg, #5267ff 0%, #765eee 55%, #8b6ef6 100%);
+
+  /* ---------- Type scale (text-hero, text-h1, text-body-lg, …) ---------- */
+  --text-hero: 4rem;                          /* 64 */
+  --text-hero--line-height: 4.25rem;          /* 68 */
+  --text-hero--font-weight: 700;
+  --text-hero--letter-spacing: -0.04em;
+
+  --text-hero-mobile: 2.625rem;               /* 42 */
+  --text-hero-mobile--line-height: 2.875rem;  /* 46 */
+  --text-hero-mobile--font-weight: 700;
+  --text-hero-mobile--letter-spacing: -0.035em;
+
+  --text-h1: 3.5rem;                          /* 56 */
+  --text-h1--line-height: 3.875rem;           /* 62 */
+  --text-h1--font-weight: 700;
+
+  --text-h2: 2.75rem;                         /* 44 */
+  --text-h2--line-height: 3.25rem;            /* 52 */
+  --text-h2--font-weight: 700;
+
+  --text-h3: 1.75rem;                         /* 28 */
+  --text-h3--line-height: 2.25rem;            /* 36 */
+  --text-h3--font-weight: 600;
+
+  --text-body-lg: 1.125rem;                   /* 18 */
+  --text-body-lg--line-height: 1.8125rem;     /* 29 */
+  --text-body-lg--font-weight: 400;
+
+  --text-body: 1rem;                          /* 16 */
+  --text-body--line-height: 1.625rem;         /* 26 */
+  --text-body--font-weight: 400;
+
+  --text-small: 0.875rem;                     /* 14 */
+  --text-small--line-height: 1.375rem;        /* 22 */
+  --text-small--font-weight: 400;
+
+  --text-label: 0.75rem;                      /* 12 */
+  --text-label--line-height: 1.125rem;        /* 18 */
+  --text-label--font-weight: 700;
+  --text-label--letter-spacing: 0.08em;
+
+  /* ---------- Spacing ----------
+     Tokens are an 8px scale where "1" = 8px, so the base unit is 8px.
+     p-1 = 8, p-2 = 16, p-3 = 24 … p-18 = 144 — every token key maps 1:1.
+     Note: this doubles Tailwind's default 4px unit for ALL spacing utilities. */
+  --spacing: 0.5rem;
+
+  /* ---------- Radii (rounded-button, rounded-card, …) ---------- */
+  --radius-input: 9px;
+  --radius-button: 10px;
+  --radius-card: 16px;
+  --radius-product: 20px;
+  --radius-section-panel: 28px;
+  --radius-pill: 999px;
+
+  /* ---------- Shadows (shadow-card, shadow-product, …) ---------- */
+  --shadow-card: 0 10px 30px rgb(16 24 40 / 0.06);
+  --shadow-product: 0 36px 80px rgb(16 24 40 / 0.13), 0 12px 28px rgb(16 24 40 / 0.07);
+  --shadow-floating: 0 20px 40px rgb(16 24 40 / 0.12);
+  --shadow-brand-button: 0 1px 2px rgb(16 24 40 / 0.06), 0 8px 18px rgb(82 103 255 / 0.2);
+
+  /* ---------- Breakpoints (mobile 390 is the unprefixed base) ---------- */
+  --breakpoint-tablet: 48rem;   /* 768  */
+  --breakpoint-laptop: 80rem;   /* 1280 */
+  --breakpoint-desktop: 90rem;  /* 1440 */
+
+  /* ---------- Containers (max-w-content) ---------- */
+  --container-content: 75rem;   /* 1200 */
+
+  /* ---------- Layout grid (reference values) ---------- */
+  --grid-gutter-mobile: 16px;
+  --grid-gutter-tablet: 20px;
+  --grid-gutter-desktop: 24px;
+  --page-margin-mobile: 20px;
+  --page-margin-tablet: 32px;
+  --page-margin-laptop: 80px;
+  --page-margin-desktop: 120px;
+
+  /* ---------- Motion ----------
+     Use as duration-(--duration-card), or bare values like duration-180. */
+  --default-transition-duration: 150ms;
+  --duration-hover: 150ms;
+  --duration-card: 180ms;
+  --duration-accordion: 220ms;
+  --duration-section-entrance: 450ms;
+  --duration-number-count: 900ms;
+  --duration-workflow-pulse: 3800ms;
+
+  --animate-workflow-pulse: workflow-pulse 3800ms ease-in-out infinite;
+
+  @keyframes workflow-pulse {
+    0%, 100% { opacity: 0.55; transform: scale(1); }
+    50%      { opacity: 1;    transform: scale(1.04); }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ==========================================================================
+   Base
+   ========================================================================== */
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--color-background);
+    color: var(--color-ink);
+  }
 }
+
+
+
+

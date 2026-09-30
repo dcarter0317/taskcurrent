@@ -1,0 +1,16 @@
+- generic [active] [ref=e1]:
+  - navigation "Main navigation" [ref=e3]:
+    - generic [ref=e5]:
+      - link "TaskCurrent home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "TaskCurrent" [ref=e7]
+      - generic [ref=e8]:
+        - link "Features" [ref=e9] [cursor=pointer]:
+          - /url: "#features"
+        - link "How it works" [ref=e10] [cursor=pointer]:
+          - /url: "#how-it-works"
+        - link "Pricing" [ref=e11] [cursor=pointer]:
+          - /url: "#pricing"
+        - link "Get started" [ref=e12] [cursor=pointer]:
+          - /url: "#get-started"
+  - button "Open Next.js Dev Tools" [ref=e18] [cursor=pointer]

@@ -1,0 +1,96 @@
+import Image from "next/image";
+import Link from "next/link";
+
+const navigationLinks = [
+  { label: "Products", href: "#" },
+  { label: "Solutions", href: "#" },
+  { label: "Integrations", href: "#" },
+  { label: "Pricing", href: "#" },
+  { label: "Resources", href: "#" }
+];
+
+export default function NavBar() {
+  return (
+    <nav aria-label="Main navigation">
+      <div className="w-full px-2.5 tablet:px-4 laptop:px-10 desktop:px-15">
+        <div className="relative mx-auto w-full max-w-content">
+          <div className="flex items-center justify-between py-1">
+            <Link href="/" aria-label="TaskCurrent home">
+              <Image
+                src="/imgs/Logo.svg"
+                alt="TaskCurrent"
+                width={144}
+                height={28}
+                priority
+              />
+            </Link>
+
+            <div className="hidden items-center gap-4 tablet:flex">
+              {navigationLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-small font-medium text-muted transition-colors hover:text-ink"
+              >
+                {link.label}
+              </a>
+              ))}
+            </div>
+            <div className="hidden items-center gap-2 tablet:flex">
+              <a
+                href="#login"
+                className="px-2 py-1 text-small text-dark transition-colors hover:underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+              >
+                Log In
+              </a>
+              <a
+                href="#book-demo"
+                className="rounded-button bg-transparent px-2 py-1 text-small font-semibold text-ink shadow-card hover:bg-brand-hover"
+              >
+                Book a Demo
+              </a>
+              <a
+                href="#start-free-trial"
+                className="rounded-button bg-brand px-2 py-1 text-small font-semibold text-white transition-colors hover:bg-brand-hover"
+              >
+                Start Free Trial
+              </a>
+            </div>
+
+            <details className="group tablet:hidden">
+              <summary
+                aria-label="Toggle navigation menu"
+                className="grid size-6 list-none cursor-pointer place-content-center gap-0.5 rounded-button text-ink transition-colors active:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+              >
+                <span
+                  aria-hidden="true"
+                  className="h-0.25 w-4 rounded-full bg-current transition-transform duration-180 group-open:translate-y-0.75 group-open:rotate-45"
+                />
+                <span
+                  aria-hidden="true"
+                  className="h-0.25 w-4 rounded-full bg-current transition-opacity duration-180 group-open:opacity-0"
+                />
+                <span
+                  aria-hidden="true"
+                  className="h-0.25 w-4 rounded-full bg-current transition-transform duration-180 group-open:-translate-y-0.75 group-open:-rotate-45"
+                />
+              </summary>
+
+              <div className="absolute inset-x-0 top-full z-20 mt-2 grid w-full gap-1 rounded-card border border-border bg-surface p-2 shadow-card">
+                {navigationLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="rounded-button px-3 py-2 text-body font-medium text-ink transition-colors active:bg-surface-alt"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+}

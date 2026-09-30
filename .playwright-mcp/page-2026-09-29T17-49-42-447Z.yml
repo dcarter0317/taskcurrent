@@ -1,0 +1,21 @@
+- generic [ref=f4e1]:
+  - navigation "Main navigation" [ref=f4e3]:
+    - generic [ref=f4e5]:
+      - link "TaskCurrent home" [ref=f4e6] [cursor=pointer]:
+        - /url: /
+        - img "TaskCurrent" [ref=f4e7]
+      - group [ref=f4e27]:
+        - generic "Toggle navigation menu" [active] [ref=f4e28] [cursor=pointer]
+        - generic [ref=f4e32]:
+          - link "Products" [ref=f4e33] [cursor=pointer]:
+            - /url: "#"
+          - link "Solutions" [ref=f4e34] [cursor=pointer]:
+            - /url: "#"
+          - link "Integrations" [ref=f4e35] [cursor=pointer]:
+            - /url: "#"
+          - link "Pricing" [ref=f4e36] [cursor=pointer]:
+            - /url: "#"
+          - link "Resources" [ref=f4e37] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f4e22] [cursor=pointer]
+  - alert [ref=f4e26]
