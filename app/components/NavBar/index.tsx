@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const navigationLinks = [
-  { label: "Products", href: "#" },
-  { label: "Solutions", href: "#" },
+  { label: "Product", href: "#", hasMenu: true },
+  { label: "Solutions", href: "#", hasMenu: true },
   { label: "Integrations", href: "#" },
   { label: "Pricing", href: "#" },
   { label: "Resources", href: "#" }
@@ -30,9 +30,14 @@ export default function NavBar() {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-small font-medium text-muted transition-colors hover:text-ink"
+                className="flex items-center gap-0.5 text-small font-medium text-ink transition-colors hover:text-brand"
               >
                 {link.label}
+                {link.hasMenu && (
+                  <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 4.5 6 7.5 9 4.5" />
+                  </svg>
+                )}
               </a>
               ))}
             </div>
@@ -41,11 +46,11 @@ export default function NavBar() {
                 href="#login"
                 className="px-2 py-1 text-small text-dark transition-colors hover:underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
               >
-                Log In
+                Log in
               </a>
               <a
                 href="#book-demo"
-                className="rounded-button bg-transparent px-2 py-1 text-small font-semibold text-ink shadow-card hover:bg-brand-hover"
+                className="rounded-button bg-brand-soft border border-subtle px-2 py-1 text-small font-semibold text-ink shadow-card hover:bg-brand-hover"
               >
                 Book a Demo
               </a>

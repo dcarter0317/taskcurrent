@@ -8,15 +8,15 @@ export default function Footer() {
          <div>
             <Link href="/" aria-label="TaskCurrent home">
               <Image
-                src="/imgs/Logo-Light.svg"
+                src="/imgs/logo_light.svg"
                 alt="TaskCurrent"
                 width={144}
                 height={28}
                 priority
               />
             </Link>
-            <p>Automation for growing businesses that have better things to do.</p>
-            <p className="text-surface font-semibold">Work smarter. Get TaskCurrent tips.</p>
+            <p className="py-4">Automation for growing businesses that have better things to do.</p>
+            <p className="text-surface font-semibold py-1">Work smarter. Get TaskCurrent tips.</p>
             <form className="flex flex-col gap-2 tablet:flex-row tablet:items-end">
               <div className="flex flex-col gap-1">
                 <label className="text-sm block" htmlFor="userEmail">Email address</label>
@@ -70,7 +70,7 @@ export default function Footer() {
             </ul>
          </div>
        </div>
-       <div className="w-full max-w-content mx-auto flex justify-between border-t border-dark-border py-3">
+       <div className="w-full max-w-content mx-auto flex flex-col justify-between border-t border-dark-border py-3 px-2">
         <p>&copy;&nbsp;2026 TaskCurrent. All rights reserved.</p>  
         <ul className="flex gap-4">
            <li>Privacy</li>
