@@ -9,10 +9,11 @@ import WorkFlowBuilderShowcase from '../WorkFlowBuilderShowcase';
 import IntergrationsCloud from '../IntergrationsCloud'
 import FeatureBentoGrid from '../FeatureBentoGrid'
 import FAQSection from '../FAQSection'
+import FinalCTASection from '../FinalCTASection';
 
 export default function Main() {
   return (
-    <main className="w-full max-w-content mx-auto flex flex-col py-2 tablet:pb-0 tablet:pt-0">
+    <main className="w-full max-w-content mx-auto flex flex-col pt-2 pb-0 tablet:pt-0">
         <Hero />
         <LogoCloud />
         <ProblemSection />
@@ -24,6 +25,7 @@ export default function Main() {
         <IntergrationsCloud />
         <FeatureBentoGrid />
         <FAQSection />
+        <FinalCTASection />
     </main>
   )
 }

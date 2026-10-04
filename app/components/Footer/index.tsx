@@ -3,7 +3,7 @@ import Link from 'next/link'
 export default function Footer() {
   return (
     <>
-      <footer className="w-full bg-ink text-subtle"> 
+      <footer className="w-full bg-footer text-subtle"> 
        <div className="w-full max-w-content mx-auto grid grid-col-1 px-2 gap-3 tablet:grid-cols-2 py-3 tablet:py-4 desktop:py-8">
          <div>
             <Link href="/" aria-label="TaskCurrent home">

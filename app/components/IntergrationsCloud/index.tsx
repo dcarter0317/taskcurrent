@@ -4,10 +4,10 @@ import Link from "next/link";
 const integrationBlocks = [
     {"icon": "G", title: "Gmail"},
     {"icon": "C", title: "Calendar"},
-    {"icon": "H", title: "Hubspot"},
-    {"icon": "S", title: "Salesforce"},
+    {"icon": "H", title: "HubSpot"},
+    {"icon": "S", title: "SalesForce"},
     {"icon": "S", title: "Slack"},
-    {"icon": "M", title: "Mailchimp"},
+    {"icon": "M", title: "MailChimp"},
     {"icon": "S", title: "Stripe"},
     {"icon": "Z", title: "Zapier"}
 ]

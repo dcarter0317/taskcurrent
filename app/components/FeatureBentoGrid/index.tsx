@@ -1,9 +1,9 @@
 import Image from 'next/image'
 
 const integrationBlocks = [
-    {"icon": "H", title: "Hubspot"},
-    {"icon": "S", title: "Salesforce"},
-    {"icon": "M", title: "Mailchimp"}
+    {"icon": "H", title: "HubSpot"},
+    {"icon": "S", title: "SalesForce"},
+    {"icon": "M", title: "MailChimp"}
 ]
 
 
@@ -70,7 +70,7 @@ export default function FeatureBentoGrid(){
                  <div className="bg-surface px-4 py-2 rounded-2xl border border-surface-alt">
                     <h4 className="font-semibold text-lg mb-1 mt-2">Smart Reminders</h4>
                     <p className="text-muted text-sm">Nudge customers and teammates at exactly the right moment.</p>
-                    <div className="bg-surface-alt rounded-2xl px-1.25 pt-3 pb-6">
+                    <div className="bg-surface-alt rounded-2xl px-1.25 pt-3 pb-6 mt-1">
                        <div className="flex items-center gap-2 bg-surface py-1 px-1 mb-1 rounded-xl border border-border">
                             <Image
                               className="py-2" 
@@ -140,17 +140,25 @@ export default function FeatureBentoGrid(){
                     </div>
                  </div>
                  
-                 <div className="bg-surface px-4 py-2 rounded-2xl border border-surface-alt">
+                 <div className="bg-surface px-4 py-2 rounded-2xl border border-surface">
                     <h4 className="font-semibold text-lg mb-1 mt-2">CRM Integrations</h4>
                     <p className="text-muted text-sm">Keep contacts, deals, and activity in sync automatically.</p>
-                     <div className="mt-3 grid grid-cols-2 gap-2 px-2">
-                     {integrationBlocks.map((block) => (
-                        <div key={block.title} className="flex items-center gap-2 border border-subtle rounded-2xl py-2 pl-2 pr-5">
-                           <p className="text-[1.2rem] bg-surface-alt border py-1.25 px-2 rounded-[11px] border-subtle">{block.icon}</p>
-                           <p>{block.title}</p>
-                        </div>
-                     ))}   
-                   </div>
+
+                  <div className="bg-surface-alt py-2 px-1 mt-2 rounded-2xl border border-surface-alt">
+                     <div className="mt-3 grid grid-cols-1 gap-1 px-2 mb-2">
+                        {integrationBlocks.map((block) => (
+                           <div key={block.title} className="flex items-center gap-2 bg-surface border border-surface-alt rounded-2xl py-2 pl-2 pr-5">
+                              <p className="text-sm bg-surface-alt border py-1.25 px-2 rounded-[11px] border-surface-alt">{block.icon}</p>
+                              <p className="text-sm font-medium">{block.title}</p>
+                           </div>
+                        ))}   
+                      </div>
+                      <div className="flex gap-0.5 px-2">
+                        <Image src="/imgs/check_circle.svg" alt="" width={14} height={14} priority />
+                        <span className="text-success-text text-xs font-medium">Two-way sync every 5 minutes</span>
+                      </div>
+                  </div>
+
                  </div>
              </div>
           </div>
