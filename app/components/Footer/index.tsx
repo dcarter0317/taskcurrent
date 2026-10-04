@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <>
       <footer className="w-full bg-footer text-subtle"> 
-       <div className="w-full max-w-content mx-auto grid grid-col-1 px-2 gap-3 tablet:grid-cols-2 py-3 tablet:py-4 desktop:py-8">
+       <div className="w-full max-w-content mx-auto grid grid-cols-1 px-2 gap-3 laptop:grid-cols-2 py-3 tablet:py-4 desktop:py-8">
          <div>
             <Link href="/" aria-label="TaskCurrent home">
               <Image
@@ -35,7 +35,7 @@ export default function Footer() {
               </button>
             </form>
          </div>
-         <div className="grid grid-cols-2 tablet:flex gap-4 tablet:flex-row tablet:justify-between tablet:gap-5">
+         <div className="grid grid-cols-2 gap-4 tablet:grid-cols-4 laptop:flex laptop:flex-row laptop:justify-between laptop:gap-5">
             <ul className="flex flex-col gap-2">
                 <li className="font-semibold text-surface">Product</li>
                 <li>Features</li>

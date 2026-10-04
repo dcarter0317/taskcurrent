@@ -8,7 +8,7 @@ interface NavigationLink {
 }
 
 const navigationLinks: NavigationLink[] = [
-  { label: "Product", href: "#products", hasMenu: true },
+  { label: "Product", href: "#product", hasMenu: true },
   { label: "Solutions", href: "#solutions", hasMenu: true },
   { label: "Integrations", href: "#integrations" },
   { label: "Pricing", href: "#pricing" },
@@ -23,7 +23,7 @@ export default function NavBar() {
           <div className="flex items-center justify-between py-1">
             <Link href="/" aria-label="TaskCurrent home">
               <Image
-                src="/imgs/Logo.svg"
+                src="/imgs/logo.svg"
                 alt="TaskCurrent"
                 width={144}
                 height={28}
@@ -31,7 +31,7 @@ export default function NavBar() {
               />
             </Link>
 
-            <div className="hidden items-center gap-4 tablet:flex">
+            <div className="hidden items-center gap-3 tablet:flex laptop:gap-4">
               {navigationLinks.map((link) => (
               <a
                 key={link.label}
@@ -50,13 +50,13 @@ export default function NavBar() {
             <div className="hidden items-center gap-2 tablet:flex">
               <a
                 href="#login"
-                className="px-2 py-1 text-small text-dark transition-colors hover:underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                className="hidden laptop:block px-2 py-1 text-small text-dark transition-colors hover:underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
               >
                 Log in
               </a>
               <a
                 href="#book-demo"
-                className="rounded-button bg-brand-soft border border-subtle px-2 py-1 text-small font-semibold text-ink shadow-card hover:bg-brand-hover"
+                className="hidden laptop:block rounded-button bg-brand-soft border border-subtle px-2 py-1 text-small font-semibold text-ink shadow-card hover:bg-brand-hover"
               >
                 Book a Demo
               </a>

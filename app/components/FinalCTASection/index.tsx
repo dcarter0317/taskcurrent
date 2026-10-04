@@ -11,7 +11,7 @@ export default function FinalCTASection() {
        <div className="w-full max-w-content mx-auto py-8 px-2 tablet:px-4 laptop:px-0">
         <div className="text-muted tablet:text-subtle">
            <p className="uppercase font-bold text-center text-cyan text-sm">Get Started</p>
-           <h1 className="text-5xl tablet:text-6xl text-center text-surface font-bold px-3 tablet:px-0 py-2 mt-2">Put your busywork on autopilot.</h1>
+           <h2 className="text-5xl tablet:text-6xl text-center text-surface font-bold px-3 tablet:px-0 py-2 mt-2">Put your busywork on autopilot.</h2>
            <p className="py-2 tablet:px-40 text-center">Build your first workflow in minutes and spend more time on the work that grows your business.</p>
            <div className="flex flex-col justify-center items-center py-2 gap-2 tablet:flex-row">
               <a

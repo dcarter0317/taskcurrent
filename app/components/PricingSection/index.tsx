@@ -65,8 +65,7 @@ export default function PricingSection(){
                           {header.btnText}
                         </a>
                         <hr className="border-t border-border" />
-                        <p className="text-xs uppercase font-bold text-subtle">What’s Included</p>
-                        <p className="uppercase text-xs font-semibold text-muted">What&apos;s included</p>
+                        <p className="uppercase text-xs font-semibold text-subtle">What&apos;s included</p>
                         <ul>
                           {(priceFeatures[index]?.items ?? []).map((item) => (
                             <li className="flex gap-1 text-sm" key={item}><Image src="/imgs/check.svg" alt="check icon" width={16} height={16} />{item}</li>
