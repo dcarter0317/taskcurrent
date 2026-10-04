@@ -11,8 +11,7 @@ const navigationLinks: NavigationLink[] = [
   { label: "Product", href: "#product", hasMenu: true },
   { label: "Solutions", href: "#solutions", hasMenu: true },
   { label: "Integrations", href: "#integrations" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Resources", href: "#resources" }
+  { label: "Pricing", href: "#pricing" }
 ];
 
 export default function NavBar() {
