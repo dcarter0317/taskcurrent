@@ -13,11 +13,12 @@ const geistMono = Geist_Mono({
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
+   <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased motion-safe:scroll-smooth`}
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
-    >
+  >
       <body className="min-h-full flex flex-col overflow-x-clip">{children}</body>
     </html>
   );

@@ -7,6 +7,8 @@ import ProductStoryIntro from '../ProductStoryIntro';
 import ProductStoryImprove from '../ProductStoryImprove';
 import WorkFlowBuilderShowcase from '../WorkFlowBuilderShowcase';
 import IntergrationsCloud from '../IntergrationsCloud'
+import FeatureBentoGrid from '../FeatureBentoGrid'
+import FAQSection from '../FAQSection'
 
 export default function Main() {
   return (
@@ -20,6 +22,8 @@ export default function Main() {
         <ProductStoryImprove />
         <WorkFlowBuilderShowcase />
         <IntergrationsCloud />
+        <FeatureBentoGrid />
+        <FAQSection />
     </main>
   )
 }

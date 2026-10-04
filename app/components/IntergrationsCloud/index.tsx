@@ -1,4 +1,3 @@
-import { stringToUint8Array } from "next/dist/server/app-render/encryption-utils";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,7 +14,7 @@ const integrationBlocks = [
 
 export default function IntergrationsCloud(){
     return(
-            <div className="relative isolate w-full mx-auto py-6 tablet:py-15">
+            <div className="relative isolate w-full mx-auto py-6 tablet:py-15" id="integrations">
               <div aria-hidden="true" className="absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2 bg-surface " />
               <div className="w-full max-w-content mx-auto flex flex-col py-2 pb-0 pt-0 tablet:text-center">
                 <div className="px-2 tablet:px-0 tablet:mb-6 tablet:max-w-4xl tablet:mx-auto">
@@ -25,7 +24,7 @@ export default function IntergrationsCloud(){
                 </div>
                 <div className="px-2 grid grid-cols-2 gap-2 justify-center tablet:mb-6 tablet:hidden">
                  {integrationBlocks.map((block) => (
-                    <div className="flex items-center gap-2 border border-subtle rounded-2xl py-2 pl-2 pr-5">
+                    <div key={block.title} className="flex items-center gap-2 border border-subtle rounded-2xl py-2 pl-2 pr-5">
                       <p className="text-[1.2rem] bg-surface-alt border py-1.25 px-2 rounded-[11px] border-subtle">{block.icon}</p>
                       <p>{block.title}</p>
                     </div>

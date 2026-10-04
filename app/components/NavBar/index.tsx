@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 const navigationLinks = [
-  { label: "Product", href: "#", hasMenu: true },
-  { label: "Solutions", href: "#", hasMenu: true },
-  { label: "Integrations", href: "#" },
-  { label: "Pricing", href: "#" },
-  { label: "Resources", href: "#" }
+  { label: "Product", href: "#products", hasMenu: true },
+  { label: "Solutions", href: "#solutions", hasMenu: true },
+  { label: "Integrations", href: "#integrations" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Resources", href: "#resources" }
 ];
 
 export default function NavBar() {
