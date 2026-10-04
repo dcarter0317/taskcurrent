@@ -1,7 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const navigationLinks = [
+interface NavigationLink {
+  label: string;
+  href: string;
+  hasMenu?: boolean;
+}
+
+const navigationLinks: NavigationLink[] = [
   { label: "Product", href: "#products", hasMenu: true },
   { label: "Solutions", href: "#solutions", hasMenu: true },
   { label: "Integrations", href: "#integrations" },

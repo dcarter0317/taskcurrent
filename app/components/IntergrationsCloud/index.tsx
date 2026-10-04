@@ -1,7 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const integrationBlocks = [
+interface IntegrationBlock {
+    icon: string;
+    title: string;
+}
+
+const integrationBlocks: IntegrationBlock[] = [
     {"icon": "G", title: "Gmail"},
     {"icon": "C", title: "Calendar"},
     {"icon": "H", title: "HubSpot"},

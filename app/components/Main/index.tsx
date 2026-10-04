@@ -6,10 +6,11 @@ import ProductStoryCapture from '../ProductStoryCapture';
 import ProductStoryIntro from '../ProductStoryIntro';
 import ProductStoryImprove from '../ProductStoryImprove';
 import WorkFlowBuilderShowcase from '../WorkFlowBuilderShowcase';
-import IntergrationsCloud from '../IntergrationsCloud'
-import FeatureBentoGrid from '../FeatureBentoGrid'
-import FAQSection from '../FAQSection'
+import IntergrationsCloud from '../IntergrationsCloud';
+import FeatureBentoGrid from '../FeatureBentoGrid';
+import FAQSection from '../FAQSection';
 import FinalCTASection from '../FinalCTASection';
+import PricingSection from '../PricingSection';
 
 export default function Main() {
   return (
@@ -24,6 +25,7 @@ export default function Main() {
         <WorkFlowBuilderShowcase />
         <IntergrationsCloud />
         <FeatureBentoGrid />
+        <PricingSection />
         <FAQSection />
         <FinalCTASection />
     </main>

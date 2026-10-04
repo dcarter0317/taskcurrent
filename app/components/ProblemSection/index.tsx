@@ -1,6 +1,10 @@
-type ProblemCard = { title: string; subtitle: string; description: string };
+interface ProblemCard {
+    title: string;
+    subtitle: string;
+    description: string;
+}
 
-const problemCards = [
+const problemCards: ProblemCard[] = [
     { title: "01", subtitle: "Lead follow-up", description: "TaskCurrent automates the repetitive work that your team shouldn’t be doing." },
     { title: "02", subtitle: "Scheduling", description: "Back-and-forth emails to book, confirm, and reschedule every appointment." },
     { title: "03", subtitle: "Customer onboarding", description: "Welcome emails, forms, and reminders sent by hand for every new customer." },

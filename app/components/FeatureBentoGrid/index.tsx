@@ -1,6 +1,11 @@
 import Image from 'next/image'
 
-const integrationBlocks = [
+interface IntegrationBlock {
+    icon: string;
+    title: string;
+}
+
+const integrationBlocks: IntegrationBlock[] = [
     {"icon": "H", title: "HubSpot"},
     {"icon": "S", title: "SalesForce"},
     {"icon": "M", title: "MailChimp"}

@@ -4,7 +4,12 @@ import { useState } from "react";
 import Image from "next/image"
 import Link from "next/link"
 
-const accordionItems = [
+interface AccordionItem {
+    question: string;
+    answer: string;
+}
+
+const accordionItems: AccordionItem[] = [
     {"question":"What is TaskCurrent?", "answer":"TaskCurrent is a workflow automation platform for small and growing businesses. It helps connect the tools you already use and handles repetitive work like lead follow-up, appointment reminders, customer onboarding, and internal handoffs."},
     {"question":"Do I need technical experience?", "answer":"No. TaskCurrent is designed to be set up visually, so you can build workflows without writing code. You choose what starts a workflow, add any conditions, and decide what should happen next. More advanced teams can still use integrations and custom logic when they need it."},
     {"question":"Which apps can TaskCurrent connect to?", "answer":"TaskCurrent is designed to work with the tools businesses commonly use for email, CRM, calendars, payments, and team communication. That includes platforms such as Gmail, Google Calendar, HubSpot, Salesforce, Slack, Mailchimp, Stripe, and Zapier. The exact integration list would continue to grow over time."},
