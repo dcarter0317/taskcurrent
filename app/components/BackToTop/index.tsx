@@ -4,6 +4,26 @@ import { useEffect, useState } from "react";
 
 const BOTTOM_THRESHOLD_PX = 240;
 
+// Each nav section ends at the bottom of its own element, except "product",
+// which spans several components and ends where "integrations" begins.
+const sectionEdges: { id: string; edge: "top" | "bottom"; endId?: string }[] = [
+  { id: "product", edge: "top", endId: "integrations" },
+  { id: "integrations", edge: "bottom" },
+  { id: "pricing", edge: "bottom" },
+];
+
+function reachedSectionEnd(viewportHeight: number) {
+  return sectionEdges.some(({ id, edge, endId }) => {
+    if (!document.getElementById(id)) return false;
+    const target = document.getElementById(endId ?? id);
+    if (!target) return false;
+    const rect = target.getBoundingClientRect();
+    const end = edge === "top" ? rect.top : rect.bottom;
+    // From just before the section end enters the viewport until it scrolls off the top.
+    return end <= viewportHeight + BOTTOM_THRESHOLD_PX && end >= 0;
+  });
+}
+
 export default function BackToTop() {
   const [visible, setVisible] = useState(false);
 
@@ -11,7 +31,8 @@ export default function BackToTop() {
     const update = () => {
       const { scrollY, innerHeight } = window;
       const pageHeight = document.documentElement.scrollHeight;
-      setVisible(scrollY > 0 && scrollY + innerHeight >= pageHeight - BOTTOM_THRESHOLD_PX);
+      const atPageBottom = scrollY > 0 && scrollY + innerHeight >= pageHeight - BOTTOM_THRESHOLD_PX;
+      setVisible(atPageBottom || reachedSectionEnd(innerHeight));
     };
 
     update();
