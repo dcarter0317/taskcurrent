@@ -21,7 +21,7 @@ export default function NavBar() {
           <div className="flex items-center justify-between py-1">
             <Link href="/" aria-label="TaskCurrent home">
               <Image
-                src="/imgs/logo.svg"
+                src="/imgs/Logo.svg"
                 alt="TaskCurrent"
                 width={144}
                 height={28}
