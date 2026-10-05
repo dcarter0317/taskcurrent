@@ -30,7 +30,7 @@ export default function ProductStoryAutomate(){
                 alt="Product Story Automate"
                 width={16}
                 height={16}
-                priority />
+                className="h-auto w-auto" priority />
              </Link>
             </div>
             <div className="px-2 tablet:mb-6 tablet:hidden">

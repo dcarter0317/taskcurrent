@@ -20,6 +20,9 @@ export default function Login() {
                     </Link>
                 </p>
             </div>
+            <Link href="/" className="mt-3 text-small font-semibold text-muted hover:text-ink hover:underline">
+                ← Back to TaskCurrent
+            </Link>
             </div>
         </main>
     );

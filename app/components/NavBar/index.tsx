@@ -21,7 +21,7 @@ export default function NavBar() {
           <div className="flex items-center justify-between py-1">
             <Link href="/" aria-label="TaskCurrent home">
               <Image
-                src="/imgs/Logo.svg"
+                src="/imgs/logo.svg"
                 alt="TaskCurrent"
                 width={144}
                 height={28}
@@ -59,7 +59,7 @@ export default function NavBar() {
                 Book a Demo
               </a>
               <a
-                href="#start-free-trial"
+                href="/signup"
                 className="rounded-button bg-brand px-2 py-1 text-small font-semibold text-white transition-colors hover:bg-brand-hover"
               >
                 Start Free Trial

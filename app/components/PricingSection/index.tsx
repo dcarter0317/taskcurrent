@@ -53,14 +53,14 @@ export default function PricingSection(){
                         {header.pillElem !== "" && (
                   
                         <p className="flex gap-1 text-xs font-semibold uppercase rounded-2xl px-1 py-0.5 text-brand-hover bg-brand-soft">  
-                         <Image src="/imgs/brand_dot.svg" alt="arrow right" width={6} height={6}priority />
+                         <Image src="/imgs/brand_dot.svg" alt="arrow right" width={6} height={6} className="h-auto w-auto" priority />
                            {header.pillElem}
                         </p> 
                         )}
                       </div>  
                         <p>{header.description}</p>
                         <p><span className="font-bold text-5xl">${period === "annual" ? Math.round(header.price * (1 - annualDiscount)) : header.price}</span><span className="text-sm text-muted">&nbsp;/month{period === "annual" ? ", billed annually" : ""}</span></p>
-                        <a href="#start-free-trial" className="w-full tablet:w-auto text-center rounded-button bg-brand px-2 py-1 text-small font-semibold text-white transition-colors hover:bg-brand-hover border border-border-strong tablet:bg-surface tablet:text-ink tablet:hover:bg-surface-alt"
+                        <a href="/signup" className="w-full tablet:w-auto text-center rounded-button bg-brand px-2 py-1 text-small font-semibold text-white transition-colors hover:bg-brand-hover border border-border-strong tablet:bg-surface tablet:text-ink tablet:hover:bg-surface-alt"
                         >
                           {header.btnText}
                         </a>
@@ -68,7 +68,7 @@ export default function PricingSection(){
                         <p className="uppercase text-xs font-semibold text-subtle">What&apos;s included</p>
                         <ul>
                           {(priceFeatures[index]?.items ?? []).map((item) => (
-                            <li className="flex gap-1 text-sm" key={item}><Image src="/imgs/check.svg" alt="check icon" width={16} height={16} />{item}</li>
+                            <li className="flex gap-1 text-sm" key={item}><Image src="/imgs/check.svg" alt="check icon" width={16} height={16} className="h-auto w-auto" />{item}</li>
                           ))}
                         </ul>
                     </div>
@@ -83,7 +83,7 @@ export default function PricingSection(){
                     alt="arrow right"
                     width={16}
                     height={16}
-                    priority />
+                    className="h-auto w-auto" priority />
                  </Link>
               </div>
             </div>

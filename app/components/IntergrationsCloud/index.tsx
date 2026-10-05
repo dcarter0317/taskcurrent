@@ -55,7 +55,7 @@ export default function IntergrationsCloud(){
                     alt="WorkFlow Builder Showcase"
                     width={16}
                     height={16}
-                    priority />
+                    className="h-auto w-auto" priority />
                  </Link>
               </div>
             </div>

@@ -23,9 +23,9 @@ export default function WorkFlowBuilderShowcase(){
                     <Image
                     src="/imgs/lead_routing_infographic_lg.svg"
                     alt="WorkFlow Builder Showcase"
-                    width={1120}
-                    height={610}
-                    priority />
+                    width={1216}
+                    height={706}
+                    className="h-auto w-auto max-w-full" priority />
                 </div>
               </div>
               <div className="w-full max-w-content mx-auto my-10 px-2 gap-4 tablet:flex">
@@ -74,7 +74,7 @@ export default function WorkFlowBuilderShowcase(){
                     alt="WorkFlow Builder Showcase"
                     width={16}
                     height={16}
-                    priority />
+                    className="h-auto w-auto" priority />
                  </Link>
               </div>
             </div>

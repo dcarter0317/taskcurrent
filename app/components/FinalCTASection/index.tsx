@@ -15,7 +15,7 @@ export default function FinalCTASection() {
            <p className="py-2 tablet:px-40 text-center">Build your first workflow in minutes and spend more time on the work that grows your business.</p>
            <div className="flex flex-col justify-center items-center py-2 gap-2 tablet:flex-row">
               <a
-                href="#start-free-trial"
+                href="/signup"
                 className="w-full tablet:w-auto text-center rounded-button bg-brand px-2 py-1 text-small font-semibold text-white transition-colors hover:bg-brand-hover tablet:bg-surface tablet:text-ink tablet:hover:bg-surface-alt"
               >
                 Start Free Trial

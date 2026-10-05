@@ -159,7 +159,7 @@ export default function FeatureBentoGrid(){
                         ))}   
                       </div>
                       <div className="flex gap-0.5 px-2">
-                        <Image src="/imgs/check_circle.svg" alt="" width={14} height={14} priority />
+                        <Image src="/imgs/check_circle.svg" alt="" width={14} height={14} className="h-auto w-auto" priority />
                         <span className="text-success-text text-xs font-medium">Two-way sync every 5 minutes</span>
                       </div>
                   </div>

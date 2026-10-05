@@ -24,7 +24,7 @@ export default function Hero() {
            <p className="py-2 tablet:max-w-51.5">Connect your leads, appointments, customers, and everyday tools so repetitive work happens automatically.</p>
            <div className="flex flex-col items-center py-2 gap-2 tablet:flex-row">
               <a
-                href="#start-free-trial"
+                href="/signup"
                 className="w-full tablet:w-auto text-center rounded-button bg-brand px-2 py-1 text-small font-semibold text-white transition-colors hover:bg-brand-hover tablet:bg-surface tablet:text-ink tablet:hover:bg-surface-alt"
               >
                 Start Free Trial
