@@ -8,15 +8,14 @@ interface NavigationLink {
 }
 
 const navigationLinks: NavigationLink[] = [
-  { label: "Product", href: "#product", hasMenu: true },
-  { label: "Solutions", href: "#solutions", hasMenu: true },
+  { label: "Product", href: "#product", hasMenu: false },
   { label: "Integrations", href: "#integrations" },
   { label: "Pricing", href: "#pricing" }
 ];
 
 export default function NavBar() {
   return (
-    <nav aria-label="Main navigation">
+    <nav id="top" aria-label="Main navigation">
       <div className="w-full px-2.5 tablet:px-4 laptop:px-10 desktop:px-15">
         <div className="relative mx-auto w-full max-w-content">
           <div className="flex items-center justify-between py-1">
