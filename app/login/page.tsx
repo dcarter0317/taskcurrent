@@ -15,8 +15,8 @@ export default function Login() {
                 <LoginForm />
                 <p className="mt-3 text-small text-muted">
                     New to TaskCurrent?{" "}
-                    <Link href="/signup" className="font-semibold text-brand-hover hover:underline">
-                        Start free trial
+                    <Link href="/early-access" className="font-semibold text-brand-hover hover:underline">
+                        Get early access
                     </Link>
                 </p>
             </div>

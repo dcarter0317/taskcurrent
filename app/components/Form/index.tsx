@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useId, useState } from "react";
+import { useId, useRef, useState } from "react";
 import Button, { type ButtonProps } from "../Button";
 
 export type FormValue = string | boolean;
@@ -64,6 +64,8 @@ export interface FormProps {
     errors?: Record<string, string>;
     /** Message shown above the actions, e.g. a failed submission. */
     formError?: string;
+    /** Called once, the first time any field receives focus. */
+    onStart?: () => void;
     actionsAlign?: "start" | "end" | "stretch";
     className?: string;
 }
@@ -117,6 +119,7 @@ export default function Form({
     onSubmit,
     errors: externalErrors,
     formError,
+    onStart,
     actionsAlign = "start",
     className = "",
 }: FormProps) {
@@ -124,6 +127,7 @@ export default function Form({
     const [values, setValues] = useState<FormValues>(() => initialValues(fields));
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [submitting, setSubmitting] = useState(false);
+    const started = useRef(false);
 
     // Fields added after mount (conditional fields) fall back to their defaults.
     const valueOf = (f: FormField): FormValue =>
@@ -286,7 +290,14 @@ export default function Form({
     }
 
     return (
-        <form noValidate onSubmit={handleSubmit} onReset={(e) => { e.preventDefault(); reset(); }} className={`flex flex-col gap-3 ${className}`}>
+        <form
+            noValidate
+            onFocus={() => {
+                if (started.current) return;
+                started.current = true;
+                onStart?.();
+            }}
+            onSubmit={handleSubmit} onReset={(e) => { e.preventDefault(); reset(); }} className={`flex flex-col gap-3 ${className}`}>
             <div className="grid grid-cols-1 gap-x-2 gap-y-3 tablet:grid-cols-2">
                 {fields.map((field) => (
                     <div key={field.name} className={field.half ? "" : "tablet:col-span-2"}>

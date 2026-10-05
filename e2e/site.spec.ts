@@ -84,7 +84,7 @@ test.describe("navigation", () => {
     }
     await expect(nav.getByRole("link", { name: "Log in" })).toBeVisible();
     await expect(nav.getByRole("link", { name: "Book a Demo" })).toBeVisible();
-    await expect(nav.getByRole("link", { name: "Start Free Trial" })).toBeVisible();
+    await expect(nav.getByRole("link", { name: "Get Early Access" })).toBeVisible();
   });
 
   test("Pricing link scrolls to pricing section", async ({ page, isMobile }) => {
@@ -138,8 +138,8 @@ test.describe("hero & CTAs", () => {
     const h1 = page.locator("h1");
     await expect(h1).toContainText("busywork");
     const main = page.locator("main");
-    await expect(main.getByRole("link", { name: /free trial/i }).first()).toHaveAttribute("href", "#start-free-trial");
-    await expect(main.getByRole("link", { name: /demo/i }).first()).toHaveAttribute("href", "#book-demo");
+    await expect(main.getByRole("link", { name: /early access/i }).first()).toHaveAttribute("href", "/early-access");
+    await expect(main.getByRole("link", { name: /demo/i }).first()).toHaveAttribute("href", "/demo");
   });
 
   test("CTA anchors have matching targets", async ({ page }) => {
@@ -164,7 +164,11 @@ test.describe("pricing", () => {
       await expect(pricing.getByText(price, { exact: true })).toBeVisible();
     }
     await expect(pricing.getByText("Most Popular")).toBeVisible();
-    await expect(pricing.getByRole("link", { name: "Start Free Trial" })).toHaveCount(3);
+    await expect(pricing.getByRole("link", { name: "Get Early Access" })).toHaveCount(3);
+    await expect(pricing.getByRole("link", { name: "Get Early Access" }).nth(1)).toHaveAttribute(
+      "href",
+      "/early-access?plan=growth&billing=monthly",
+    );
   });
 
   test("billing toggle switches to annual (20% off) and back", async ({ page }) => {
@@ -208,8 +212,8 @@ test.describe("FAQ accordion", () => {
   const buttons = (page: import("@playwright/test").Page) =>
     page.locator('button[id^="accordion-button-"]');
 
-  test("renders 8 collapsed questions", async ({ page }) => {
-    await expect(buttons(page)).toHaveCount(8);
+  test("renders 9 collapsed questions", async ({ page }) => {
+    await expect(buttons(page)).toHaveCount(9);
     for (const b of await buttons(page).all()) {
       await expect(b).toHaveAttribute("aria-expanded", "false");
     }
@@ -306,4 +310,49 @@ test.describe("responsive layout", () => {
       expect(overflow).toBeLessThanOrEqual(0);
     });
   }
+});
+
+test.describe("early access", () => {
+  test("pricing card preserves plan and billing choice", async ({ page }) => {
+    await page.locator("#pricing").getByRole("radio", { name: /Annual/ }).click();
+    await page.locator("#pricing").getByRole("link", { name: "Get Early Access" }).nth(1).click();
+    await expect(page).toHaveURL(/\/early-access\?plan=growth&billing=annual$/);
+    await expect(page.getByText("You're interested in the Growth plan")).toBeVisible();
+  });
+
+  test("submits the form, fires analytics and shows the success state", async ({ page }) => {
+    await page.addInitScript(() => {
+      (window as unknown as { events: unknown[] }).events = [];
+      window.gtag = (_c, name, params) => (window as unknown as { events: unknown[] }).events.push({ name, params });
+    });
+    await page.goto("/early-access?plan=growth&billing=annual");
+    await page.getByLabel("Full name").fill("Sarah Mitchell");
+    await page.getByLabel("Work email").fill("sarah@brightpath.com");
+    await page.getByLabel("Company (optional)").fill("BrightPath");
+    await page.getByLabel("Company size").selectOption("6-20");
+    await page.getByLabel("What would you automate first?").selectOption("lead_followup");
+    await page.getByRole("button", { name: "Join Early Access" }).click();
+    await expect(page.getByRole("heading", { name: "You're on the list." })).toBeVisible();
+    const events = await page.evaluate(() => (window as unknown as { events: { name: string; params: object }[] }).events);
+    expect(events).toEqual([
+      { name: "form_start", params: { form_name: "early_access" } },
+      {
+        name: "generate_lead",
+        params: {
+          lead_type: "early_access",
+          company_size: "6-20",
+          automation_need: "lead_followup",
+          plan_interest: "growth",
+          billing_interest: "annual",
+        },
+      },
+    ]);
+  });
+
+  test("ignores unknown plan values and /signup redirects", async ({ page }) => {
+    await page.goto("/early-access?plan=bogus");
+    await expect(page.getByText(/You're interested in/)).toHaveCount(0);
+    await page.goto("/signup");
+    await expect(page).toHaveURL(/\/early-access$/);
+  });
 });

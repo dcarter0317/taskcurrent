@@ -1,4 +1,5 @@
 import Image from "next/image";
+import TrackedLink from "../TrackedLink";
 
 export default function Hero() {
     return (
@@ -23,32 +24,32 @@ export default function Hero() {
            <h1 className="text-5xl tablet:text-6xl text-center tablet:text-surface tablet:text-left font-bold px-3 tablet:px-0 py-2 text-ink mt-2">Automate the <span className="underline decoration-violet tablet:decoration-cyan tablet:decoration-2 tablet:underline-offset-8">busywork.</span><br />Grow your business.</h1>
            <p className="py-2 tablet:max-w-51.5">Connect your leads, appointments, customers, and everyday tools so repetitive work happens automatically.</p>
            <div className="flex flex-col items-center py-2 gap-2 tablet:flex-row">
-              <a
-                href="/signup"
+              <TrackedLink
+                href="/early-access"
+                ctaName="get_early_access"
+                ctaLocation="hero"
                 className="w-full tablet:w-auto text-center rounded-button bg-brand px-2 py-1 text-small font-semibold text-white transition-colors hover:bg-brand-hover tablet:bg-surface tablet:text-ink tablet:hover:bg-surface-alt"
               >
-                Start Free Trial
-              </a>
-                <a
+                Get Early Access
+              </TrackedLink>
+                <TrackedLink
                 href="/demo"
+                ctaName="book_demo"
+                ctaLocation="hero"
                 className="w-full tablet:w-auto text-center rounded-button bg-brand-soft px-2 py-1 text-small font-semibold text-ink shadow-card border border-subtle hover:bg-brand-hover tablet:bg-dark-surface tablet:text-surface tablet:border-dark-border tablet:hover:bg-dark-surface-2"
               >
                 Book a Demo<span aria-hidden="true" className="hidden tablet:inline-block tablet:pl-0.5">→</span>
-              </a>
+              </TrackedLink>
             </div>
         </div>
         <ul className="flex justify-center tablet:justify-start gap-4 mb-2 tablet:mt-1 tablet:text-subtle tablet:text-small">
            <li className="flex items-center gap-1">
               <Image src="/imgs/check.svg" alt="" width={16} height={16} />
-              No credit card required
+              No commitment required
            </li>
            <li className="flex items-center gap-1">
               <Image src="/imgs/check.svg" alt="" width={16} height={16} />
-              Setup in minutes
-           </li>
-           <li className="hidden tablet:flex items-center gap-1">
-              <Image src="/imgs/check.svg" alt="" width={16} height={16} />
-              Cancel anytime
+              Be first to know when access opens
            </li>
         </ul>
         <div className="tablet:hidden">

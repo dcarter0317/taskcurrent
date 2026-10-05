@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import TrackedLink from "../TrackedLink";
 
 interface NavigationLink {
   label: string;
@@ -52,18 +53,22 @@ export default function NavBar() {
               >
                 Log in
               </a>
-              <a
+              <TrackedLink
                 href="/demo"
+                ctaName="book_demo"
+                ctaLocation="nav"
                 className="hidden laptop:block rounded-button bg-brand-soft border border-subtle px-2 py-1 text-small font-semibold text-ink shadow-card hover:bg-brand-hover"
               >
                 Book a Demo
-              </a>
-              <a
-                href="/signup"
+              </TrackedLink>
+              <TrackedLink
+                href="/early-access"
+                ctaName="get_early_access"
+                ctaLocation="nav"
                 className="rounded-button bg-brand px-2 py-1 text-small font-semibold text-white transition-colors hover:bg-brand-hover"
               >
-                Start Free Trial
-              </a>
+                Get Early Access
+              </TrackedLink>
             </div>
 
             <details className="group tablet:hidden">

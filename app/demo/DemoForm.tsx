@@ -1,6 +1,8 @@
 "use client";
 
 import Form from "../components/Form";
+import { trackEvent } from "../lib/analytics";
+import { automationNeedOptions, companySizeOptions } from "../lib/leadOptions";
 
 export default function DemoForm() {
     return (
@@ -17,13 +19,7 @@ export default function DemoForm() {
                     placeholder: "Select company size",
                     required: true,
                     half: true,
-                    options: [
-                        { label: "1–5 employees", value: "1-5" },
-                        { label: "6–20 employees", value: "6-20" },
-                        { label: "21–50 employees", value: "21-50" },
-                        { label: "51–200 employees", value: "51-200" },
-                        { label: "200+ employees", value: "200+" },
-                    ],
+                    options: companySizeOptions,
                 },
                 {
                     name: "automate",
@@ -32,13 +28,7 @@ export default function DemoForm() {
                     placeholder: "Select an option",
                     required: true,
                     half: true,
-                    options: [
-                        { label: "Lead follow-up", value: "lead-follow-up" },
-                        { label: "Scheduling & bookings", value: "scheduling" },
-                        { label: "Administrative work", value: "admin" },
-                        { label: "Reporting", value: "reporting" },
-                        { label: "Something else", value: "other" },
-                    ],
+                    options: automationNeedOptions,
                 },
                 { name: "tools", label: "Current tools", placeholder: "e.g. HubSpot, Gmail, Calendly" },
                 {
@@ -51,9 +41,15 @@ export default function DemoForm() {
             ]}
             actions={[{ label: "Request My Demo", type: "submit" }]}
             actionsAlign="stretch"
+            onStart={() => trackEvent("form_start", { form_name: "demo_request" })}
             onSubmit={async (values) => {
                 // TODO: replace with the real demo-request call
                 console.log("demo", values);
+                trackEvent("generate_lead", {
+                    lead_type: "demo",
+                    company_size: String(values.size),
+                    automation_need: String(values.automate),
+                });
             }}
         />
     );

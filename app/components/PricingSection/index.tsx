@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import TrackedLink from "../TrackedLink";
 import BillingToggle, { type BillingPeriod } from "../BillingToggle";
 
 interface PriceCardHeader {
@@ -19,9 +20,9 @@ interface PriceFeatureList {
 }
 
 const priceCardHeaders: PriceCardHeader[] = [
-    {"title": "Starter", "description": "For owners automating their first workflows.", "price": 29, "pillElem": "", "priceCycle": "month", "btnText": "Start Free Trial"},
-    {"title": "Growth", "description": "For growing teams automating across the business.", "price": 79, "pillElem": "Most Popular", "priceCycle": "month", "btnText": "Start Free Trial"},
-    {"title": "Pro", "description": "For operations teams running automation at scale.", "price": 149, "pillElem": "", "priceCycle": "month", "btnText": "Start Free Trial"}   
+    {"title": "Starter", "description": "For owners automating their first workflows.", "price": 29, "pillElem": "", "priceCycle": "month", "btnText": "Get Early Access"},
+    {"title": "Growth", "description": "For growing teams automating across the business.", "price": 79, "pillElem": "Most Popular", "priceCycle": "month", "btnText": "Get Early Access"},
+    {"title": "Pro", "description": "For operations teams running automation at scale.", "price": 149, "pillElem": "", "priceCycle": "month", "btnText": "Get Early Access"}   
 ]
 
 const priceFeatures: PriceFeatureList[] = [
@@ -60,10 +61,15 @@ export default function PricingSection(){
                       </div>  
                         <p>{header.description}</p>
                         <p><span className="font-bold text-5xl">${period === "annual" ? Math.round(header.price * (1 - annualDiscount)) : header.price}</span><span className="text-sm text-muted">&nbsp;/month{period === "annual" ? ", billed annually" : ""}</span></p>
-                        <a href="/signup" className="w-full tablet:w-auto text-center rounded-button bg-brand px-2 py-1 text-small font-semibold text-white transition-colors hover:bg-brand-hover border border-border-strong tablet:bg-surface tablet:text-ink tablet:hover:bg-surface-alt"
+                        <TrackedLink
+                          href={`/early-access?plan=${header.title.toLowerCase()}&billing=${period}`}
+                          ctaName="get_early_access"
+                          ctaLocation="pricing"
+                          eventParams={{ plan_interest: header.title.toLowerCase(), billing_interest: period }}
+                          className="w-full tablet:w-auto text-center rounded-button bg-brand px-2 py-1 text-small font-semibold text-white transition-colors hover:bg-brand-hover border border-border-strong tablet:bg-surface tablet:text-ink tablet:hover:bg-surface-alt"
                         >
                           {header.btnText}
-                        </a>
+                        </TrackedLink>
                         <hr className="border-t border-border" />
                         <p className="uppercase text-xs font-semibold text-subtle">What&apos;s included</p>
                         <ul>
