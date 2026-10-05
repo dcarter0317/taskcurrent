@@ -30,7 +30,7 @@ export default function Hero() {
                 Start Free Trial
               </a>
                 <a
-                href="#book-demo"
+                href="/demo"
                 className="w-full tablet:w-auto text-center rounded-button bg-brand-soft px-2 py-1 text-small font-semibold text-ink shadow-card border border-subtle hover:bg-brand-hover tablet:bg-dark-surface tablet:text-surface tablet:border-dark-border tablet:hover:bg-dark-surface-2"
               >
                 Book a Demo<span aria-hidden="true" className="hidden tablet:inline-block tablet:pl-0.5">→</span>

@@ -47,13 +47,13 @@ export default function NavBar() {
             </div>
             <div className="hidden items-center gap-2 tablet:flex">
               <a
-                href="#login"
+                href="/login"
                 className="hidden laptop:block px-2 py-1 text-small text-dark transition-colors hover:underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
               >
                 Log in
               </a>
               <a
-                href="#book-demo"
+                href="/demo"
                 className="hidden laptop:block rounded-button bg-brand-soft border border-subtle px-2 py-1 text-small font-semibold text-ink shadow-card hover:bg-brand-hover"
               >
                 Book a Demo
