@@ -53,10 +53,9 @@ export default function EarlyAccessForm({ plan, billing }: EarlyAccessFormProps)
                         { name: "company", label: "Company (optional)", placeholder: "BrightPath Plumbing", autoComplete: "organization" },
                         {
                             name: "size",
-                            label: "Company size",
+                            label: "Company size (optional)",
                             type: "select",
                             placeholder: "Select company size",
-                            required: true,
                             half: true,
                             options: companySizeOptions,
                         },
