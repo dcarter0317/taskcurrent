@@ -110,7 +110,7 @@ export default function Demo() {
                                             </span>
                                             <span className="block text-small font-semibold leading-5">{s.title}</span>
                                         </span>
-                                        {s.tag !== "Complete" && <Icon name="check" className="size-[16px] text-mint" />}
+                                        {s.tag !== "Complete" && <Icon name="check" className="size-2 text-mint" />}
                                     </div>
                                 </div>
                             ))}

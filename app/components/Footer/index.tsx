@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import NewsletterForm from './NewsletterForm'
+import CookieSettingsButton from './CookieSettingsButton'
 export default function Footer() {
   return (
     <>
@@ -60,7 +61,7 @@ export default function Footer() {
         <ul className="flex gap-4">
            <li>Privacy</li>
            <li>Terms</li>
-           <li>Cookie settings</li>
+           <li><CookieSettingsButton /></li>
         </ul>      
        </div>
       </footer>
