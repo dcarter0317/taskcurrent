@@ -128,13 +128,7 @@ export default function Demo() {
                 </aside>
     
                 <section className="w-full px-1 py-2 tablet:pt-4">
-                    <h2 className="mb-3 text-[1.5rem] font-semibold leading-8 text-ink">
-                        Request your personalized demo
-                    </h2>
                     <DemoForm />
-                    <p className="mt-2 text-label font-normal normal-case tracking-normal text-subtle">
-                        No spam. We&apos;ll only use this to schedule your walkthrough.
-                    </p>
                 </section>
             </div>
             </main>

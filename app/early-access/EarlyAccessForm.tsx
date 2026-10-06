@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Form from "../components/Form";
 import { trackEvent } from "../lib/analytics";
+import { submitLead } from "../lib/submitLead";
 import { automationNeedOptions, companySizeOptions } from "../lib/leadOptions";
 
 interface EarlyAccessFormProps {
@@ -12,6 +13,7 @@ interface EarlyAccessFormProps {
 
 export default function EarlyAccessForm({ plan, billing }: EarlyAccessFormProps) {
     const [submitted, setSubmitted] = useState(false);
+    const [error, setError] = useState<string>();
     const successRef = useRef<HTMLHeadingElement>(null);
 
     useEffect(() => {
@@ -69,12 +71,17 @@ export default function EarlyAccessForm({ plan, billing }: EarlyAccessFormProps)
                             options: automationNeedOptions,
                         },
                     ]}
+                    formError={error}
                     actions={[{ label: "Join Early Access", type: "submit" }]}
                     actionsAlign="stretch"
                     onStart={() => trackEvent("form_start", { form_name: "early_access" })}
                     onSubmit={async (values) => {
-                        // TODO: replace with the real early-access signup call
-                        console.log("early-access", { ...values, plan, billing });
+                        setError(undefined);
+                        const result = await submitLead("early_access", { ...values, plan, billing });
+                        if (!result.ok) {
+                            setError(result.error);
+                            return;
+                        }
                         trackEvent("generate_lead", {
                             lead_type: "early_access",
                             company_size: String(values.size),

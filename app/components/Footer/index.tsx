@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import NewsletterForm from './NewsletterForm'
 export default function Footer() {
   return (
     <>
@@ -17,23 +18,7 @@ export default function Footer() {
             </Link>
             <p className="py-4">Automation for growing businesses that have better things to do.</p>
             <p className="text-surface font-semibold py-1">Work smarter. Get TaskCurrent tips.</p>
-            <form className="flex flex-col gap-2 tablet:flex-row tablet:items-end">
-              <div className="flex flex-col gap-1">
-                <label className="text-sm block" htmlFor="userEmail">Email address</label>
-                <input
-                  id="userEmail"
-                  type="email"
-                  placeholder="you@company.com"
-                  className="rounded-button bg-dark-surface-2 border border-dark-border px-2 py-1 text-white transition-colors hover:bg-brand-hover"
-                />
-              </div>
-              <button
-                type="submit"
-                className="rounded-button bg-brand px-2 py-1 text-small font-semibold text-white transition-colors hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-              >
-                Subscribe
-              </button>
-            </form>
+            <NewsletterForm />
          </div>
          <div className="grid grid-cols-2 gap-4 tablet:grid-cols-4 laptop:flex laptop:flex-row laptop:justify-between laptop:gap-5">
             <ul className="flex flex-col gap-2">
