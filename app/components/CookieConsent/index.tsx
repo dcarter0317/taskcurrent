@@ -4,7 +4,17 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Script from "next/script";
 import { getConsent, OPEN_SETTINGS_EVENT, setConsent, subscribeConsent, type Consent } from "../../lib/consent";
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
+
+function consentSignals({ analytics, marketing }: Consent) {
+    const grant = (v: boolean) => (v ? "granted" : "denied");
+    return {
+        analytics_storage: grant(analytics),
+        ad_storage: grant(marketing),
+        ad_user_data: grant(marketing),
+        ad_personalization: grant(marketing),
+    };
+}
 
 const getServerConsent = () => null;
 const noopSubscribe = () => () => {};
@@ -35,10 +45,10 @@ export default function CookieConsent() {
         if (!open && dialog.open) dialog.close();
     }, [open]);
 
-    // Keep Google Consent Mode and GA's kill switch in sync with the saved choice.
+    // After GTM has loaded, push any later change of choice to Google Consent Mode.
     useEffect(() => {
-        if (!GA_ID || !window.gtag) return;
-        (window as unknown as Record<string, unknown>)[`ga-disable-${GA_ID}`] = !consent?.analytics;
+        if (!GTM_ID || !consent || !window.gtag) return;
+        window.gtag("consent", "update", consentSignals(consent));
     }, [consent]);
 
     function save(next: Consent) {
@@ -50,15 +60,13 @@ export default function CookieConsent() {
 
     return (
         <>
-            {GA_ID && consent?.analytics && (
-                <>
-                    <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
-                    <Script id="ga-init" strategy="afterInteractive">
-                        {`window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};
-gtag('consent','default',{analytics_storage:'granted',ad_storage:'${consent.marketing ? "granted" : "denied"}',ad_user_data:'${consent.marketing ? "granted" : "denied"}',ad_personalization:'${consent.marketing ? "granted" : "denied"}'});
-gtag('js',new Date());gtag('config','${GA_ID}');`}
-                    </Script>
-                </>
+            {GTM_ID && consent && (consent.analytics || consent.marketing) && (
+                <Script id="gtm-init" strategy="afterInteractive">
+                    {`window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};
+                    gtag('consent','default',${JSON.stringify(consentSignals({ analytics: false, marketing: false }))});
+                    gtag('consent','update',${JSON.stringify(consentSignals(consent))});
+                    (function(w,d,s,l,i){w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`}
+                </Script>
             )}
 
             {showBanner && (
