@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import TrackedLink from "../TrackedLink";
+import TrackedLink from "../TrackedLink"
 import BillingToggle, { type BillingPeriod } from "../BillingToggle";
 
 interface PriceCardHeader {
@@ -82,15 +81,20 @@ export default function PricingSection(){
                 </div>
               </div>
               <div className="w-full max-w-content mx-auto flex flex-col py-2 px-2 tablet:justify-center tablet:pb-0 tablet:pt-0">
-                <Link href="#book-demo" className="text-violet font-semibold flex tablet:items-center tablet:justify-center gap-0.5">
-                 Compare every feature
-                 <Image
+                 <TrackedLink
+                    href="/demo"
+                    ctaName="book_demo"
+                    ctaLocation="pricing_section"
+                    className="text-violet font-semibold flex tablet:items-center tablet:justify-center gap-0.5"
+                    >
+                    Compare every feature
+                    <Image
                     src="/imgs/arrow_right.svg"
-                    alt="arrow right"
+                    alt="Pricing Section"
                     width={16}
                     height={16}
                     className="h-auto w-auto" priority />
-                 </Link>
+                </TrackedLink>
               </div>
             </div>
     )

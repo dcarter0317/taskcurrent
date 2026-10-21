@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image"
-import Link from "next/link"
 
 interface AccordionItem {
     question: string;
@@ -38,7 +37,7 @@ export default function Accordion() {
                  onClick={() => setOpenIndex(isOpen ? null : index)}
                  className="flex w-full items-center justify-between text-left transition-transform duration-150 ease-out active:scale-[0.99] motion-reduce:transition-none"
                >
-                 <span className={`text-lg transition-colors duration-200 motion-reduce:transition-none ${isOpen ? "font-bold text-cyan" : "font-normal"}`}>{item.question}</span>
+                 <span className={`text-lg transition-colors duration-200 motion-reduce:transition-none ${isOpen ? "font-bold text-dark-surface-2" : "font-normal"}`}>{item.question}</span>
                  <span aria-hidden="true" className="icon relative size-5 shrink-0">
                    <Image
                      src="/imgs/plus_icon.svg"

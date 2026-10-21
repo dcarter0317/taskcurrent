@@ -11,10 +11,11 @@ interface NavigationLink {
 const navigationLinks: NavigationLink[] = [
   { label: "Product", href: "#product", hasMenu: false },
   { label: "Integrations", href: "#integrations" },
-  { label: "Pricing", href: "#pricing" }
+  { label: "Pricing", href: "#pricing" },
+  { label: "FAQ", href: "#faq" }
 ];
 
-export default function NavBar() {
+export default function NavBar({ showLinks = false }: { showLinks?: boolean }) {
   return (
     <nav id="top" aria-label="Main navigation">
       <div className="w-full px-2.5 tablet:px-4 laptop:px-10 desktop:px-15">
@@ -30,6 +31,7 @@ export default function NavBar() {
               />
             </Link>
 
+            {showLinks && (
             <div className="hidden items-center gap-3 tablet:flex laptop:gap-4">
               {navigationLinks.map((link) => (
               <a
@@ -46,6 +48,7 @@ export default function NavBar() {
               </a>
               ))}
             </div>
+            )}
             <div className="hidden items-center gap-2 tablet:flex">
               <a
                 href="/login"
@@ -71,6 +74,7 @@ export default function NavBar() {
               </TrackedLink>
             </div>
 
+            {showLinks && (
             <details className="group tablet:hidden">
               <summary
                 aria-label="Toggle navigation menu"
@@ -102,6 +106,7 @@ export default function NavBar() {
                 ))}
               </div>
             </details>
+            )}
           </div>
         </div>
       </div>

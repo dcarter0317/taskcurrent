@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import TrackedLink from "../TrackedLink";
 
 export default function WorkFlowBuilderShowcase(){
     return(
@@ -67,15 +67,20 @@ export default function WorkFlowBuilderShowcase(){
                 </div>  
               </div>
               <div className="w-full max-w-content mx-auto flex flex-col py-2 text-center tablet:pb-0 tablet:pt-0">
-                <Link href="#book-demo" className="text-cyan font-semibold flex items-center justify-center gap-0.5">
-                 Explore Workflow Builder
-                 <Image
-                    src="/imgs/arrow_right_cyan.svg"
-                    alt="WorkFlow Builder Showcase"
+                 <TrackedLink
+                    href="/demo"
+                    ctaName="book_demo"
+                    ctaLocation="workflow_showcase"
+                    className="text-cyan font-semibold flex items-center justify-center gap-0.5"
+                    >
+                    Explore Workflow Builder
+                    <Image
+                    src="/imgs/arrow_right.svg"
+                    alt=""
                     width={16}
                     height={16}
                     className="h-auto w-auto" priority />
-                 </Link>
+                </TrackedLink>
               </div>
             </div>
     )

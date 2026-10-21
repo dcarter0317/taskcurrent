@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import TrackedLink from "../TrackedLink"
 
 export default function ProductStoryImprove() {
   return (
@@ -23,15 +23,20 @@ export default function ProductStoryImprove() {
                 Make data-driven improvements
            </li>
           </ul>
-         <Link href="#book-demo" className="text-violet flex items-center gap-0.5">
-         Explore Analytics Dashboard
-         <Image
+         <TrackedLink
+            href="/demo"
+            ctaName="book_demo"
+            ctaLocation="product_story_improve"
+            className="text-violet font-semibold flex items-center gap-0.5"
+          >
+            Explore Analytics Dashboard
+            <Image
             src="/imgs/arrow_right.svg"
             alt="Product Story Improve"
             width={16}
             height={16}
             className="h-auto w-auto" priority />
-         </Link>
+        </TrackedLink>
         </div>
         <div className="px-2 tablet:mb-6 tablet:hidden">
             <Image

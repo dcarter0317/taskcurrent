@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import TrackedLink from "../TrackedLink"
 
 interface IntegrationBlock {
     icon: string;
@@ -48,15 +48,20 @@ export default function IntergrationsCloud(){
                  <p className="text-muted tablet:text-center">Integrations shown are illustrative concepts and do not imply partnership or endorsement.</p>
               </div>
               <div className="w-full max-w-content mx-auto flex flex-col py-2 px-2 tablet:justify-center tablet:pb-0 tablet:pt-0">
-                <Link href="#book-demo" className="text-violet font-semibold flex tablet:items-center tablet:justify-center gap-0.5">
-                 View all integrations
-                 <Image
+                 <TrackedLink
+                    href="/demo"
+                    ctaName="book_demo"
+                    ctaLocation="integrations"
+                    className="text-violet font-semibold flex tablet:items-center tablet:justify-center gap-0.5"
+                    >
+                    View all integrations
+                    <Image
                     src="/imgs/arrow_right.svg"
-                    alt="WorkFlow Builder Showcase"
+                    alt="IntegrationsCloud"
                     width={16}
                     height={16}
                     className="h-auto w-auto" priority />
-                 </Link>
+                </TrackedLink>
               </div>
             </div>
     )
