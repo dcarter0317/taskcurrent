@@ -84,7 +84,7 @@ export default function PricingSection(){
                  <TrackedLink
                     href="/demo"
                     ctaName="book_demo"
-                    ctaLocation="pricing_section"
+                    ctaLocation="pricing"
                     className="text-violet font-semibold flex tablet:items-center tablet:justify-center gap-0.5"
                     >
                     Compare every feature
