@@ -4,20 +4,21 @@ import { useState } from "react";
 import Image from "next/image"
 
 interface AccordionItem {
+    id: string;
     question: string;
     answer: string;
 }
 
 const accordionItems: AccordionItem[] = [
-    {"question":"What is TaskCurrent?", "answer":"TaskCurrent is a workflow automation platform for small and growing businesses. It helps connect the tools you already use and handles repetitive work like lead follow-up, appointment reminders, customer onboarding, and internal handoffs."},
-    {"question":"Do I need technical experience?", "answer":"No. TaskCurrent is designed to be set up visually, so you can build workflows without writing code. You choose what starts a workflow, add any conditions, and decide what should happen next. More advanced teams can still use integrations and custom logic when they need it."},
-    {"question":"Which apps can TaskCurrent connect to?", "answer":"TaskCurrent is designed to work with the tools businesses commonly use for email, CRM, calendars, payments, and team communication. That includes platforms such as Gmail, Google Calendar, HubSpot, Salesforce, Slack, Mailchimp, Stripe, and Zapier. The exact integration list would continue to grow over time."},
-    {"question":"Can TaskCurrent automate customer emails?", "answer":"Yes. You can use TaskCurrent to send emails as part of a workflow, such as a lead confirmation, appointment reminder, onboarding message, follow-up, or re-engagement email. Messages can also use customer and workflow data so they feel relevant to the person receiving them."},
-    {"question":"How can I try TaskCurrent?", "answer":"TaskCurrent is currently in early access. Join the early-access list and we’ll let you know when it’s ready to try. If you’d like a closer look in the meantime, you can also request a demo."},
-    {"question":"When will I be charged?", "answer":"Joining early access doesn’t start a subscription or require payment. Pricing is shown so you can get a sense of the plans we’re designing, but you won’t be charged unless you choose a paid plan once TaskCurrent becomes available."},
-    {"question":"Can I change plans later?", "answer":"Yes. You can move to a different plan as your needs change. If you start with a smaller plan and later need more workflow runs, integrations, or reporting features, you can upgrade without rebuilding your setup."},
-    {"question":"How is customer data protected?", "answer":"TaskCurrent is designed to use secure connections and standard safeguards for data stored or passed between connected services. Access to customer information should be limited to the people and systems that need it, and connected accounts should use secure authentication rather than shared passwords."},
-    {"question":"Can I cancel anytime?", "answer":"Yes. There’s no long-term commitment. You can cancel your subscription whenever you need to, and your plan would remain active through the end of the current billing period."},
+    {"id":"what-is-taskcurrent", "question":"What is TaskCurrent?", "answer":"TaskCurrent is a workflow automation platform for small and growing businesses. It helps connect the tools you already use and handles repetitive work like lead follow-up, appointment reminders, customer onboarding, and internal handoffs."},
+    {"id":"technical-experience", "question":"Do I need technical experience?", "answer":"No. TaskCurrent is designed to be set up visually, so you can build workflows without writing code. You choose what starts a workflow, add any conditions, and decide what should happen next. More advanced teams can still use integrations and custom logic when they need it."},
+    {"id":"connected-apps", "question":"Which apps can TaskCurrent connect to?", "answer":"TaskCurrent is designed to work with the tools businesses commonly use for email, CRM, calendars, payments, and team communication. That includes platforms such as Gmail, Google Calendar, HubSpot, Salesforce, Slack, Mailchimp, Stripe, and Zapier. The exact integration list would continue to grow over time."},
+    {"id":"customer-emails", "question":"Can TaskCurrent automate customer emails?", "answer":"Yes. You can use TaskCurrent to send emails as part of a workflow, such as a lead confirmation, appointment reminder, onboarding message, follow-up, or re-engagement email. Messages can also use customer and workflow data so they feel relevant to the person receiving them."},
+    {"id":"try-taskcurrent", "question":"How can I try TaskCurrent?", "answer":"TaskCurrent is currently in early access. Join the early-access list and we’ll let you know when it’s ready to try. If you’d like a closer look in the meantime, you can also request a demo."},
+    {"id":"billing", "question":"When will I be charged?", "answer":"Joining early access doesn’t start a subscription or require payment. Pricing is shown so you can get a sense of the plans we’re designing, but you won’t be charged unless you choose a paid plan once TaskCurrent becomes available."},
+    {"id":"change-plans", "question":"Can I change plans later?", "answer":"Yes. You can move to a different plan as your needs change. If you start with a smaller plan and later need more workflow runs, integrations, or reporting features, you can upgrade without rebuilding your setup."},
+    {"id":"data-protection", "question":"How is customer data protected?", "answer":"TaskCurrent is designed to use secure connections and standard safeguards for data stored or passed between connected services. Access to customer information should be limited to the people and systems that need it, and connected accounts should use secure authentication rather than shared passwords."},
+    {"id":"cancel-subscription", "question":"Can I cancel anytime?", "answer":"Yes. There’s no long-term commitment. You can cancel your subscription whenever you need to, and your plan would remain active through the end of the current billing period."},
 ]
 
 export default function Accordion() {
@@ -34,7 +35,17 @@ export default function Accordion() {
                  aria-expanded={isOpen}
                  aria-controls={`accordion-panel-${index}`}
                  id={`accordion-button-${index}`}
-                 onClick={() => setOpenIndex(isOpen ? null : index)}
+                 onClick={() => {
+                    const willOpen = !isOpen;
+                      setOpenIndex(willOpen ? index : null);
+
+                      if (willOpen) {
+                          trackEvent("faq_open", {
+                              question_id: item.id,
+                              question_text: item.question,
+                          });
+                      }
+                    }}
                  className="flex w-full items-center justify-between text-left transition-transform duration-150 ease-out active:scale-[0.99] motion-reduce:transition-none"
                >
                  <span className={`text-lg transition-colors duration-200 motion-reduce:transition-none ${isOpen ? "font-bold text-dark-surface-2" : "font-normal"}`}>{item.question}</span>
