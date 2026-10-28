@@ -1,9 +1,13 @@
+"use client";
+
+import { useSectionTracking } from "../../lib/useSectionTracking";
 import Image from "next/image";
 import TrackedLink from "../TrackedLink";
 
 export default function Hero() {
+    const sectionRef = useSectionTracking("hero");
     return (
-     <div className="relative tablet:flex tablet:h-90 tablet:items-center">
+     <div ref={sectionRef} className="relative tablet:flex tablet:h-90 tablet:items-center">
        {/* Full-bleed background: dark panel on the left, photo fading in from the right */}
        <div className="hidden tablet:block absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 -z-10 overflow-hidden bg-dark-canvas">
          <div className="absolute inset-y-0 right-0 w-[56%]">

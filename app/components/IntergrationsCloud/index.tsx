@@ -1,3 +1,6 @@
+"use client";
+
+import { useSectionTracking } from "../../lib/useSectionTracking";
 import Image from "next/image";
 import TrackedLink from "../TrackedLink"
 
@@ -18,8 +21,9 @@ const integrationBlocks: IntegrationBlock[] = [
 ]
 
 export default function IntergrationsCloud(){
+    const sectionRef = useSectionTracking("integrations");
     return(
-            <div className="relative isolate w-full mx-auto py-6 tablet:py-15" id="integrations">
+            <div ref={sectionRef} className="relative isolate w-full mx-auto py-6 tablet:py-15" id="integrations">
               <div aria-hidden="true" className="absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2 bg-surface " />
               <div className="w-full max-w-content mx-auto flex flex-col py-2 pb-0 pt-0 tablet:text-center">
                 <div className="px-2 tablet:px-0 tablet:mb-6 tablet:max-w-4xl tablet:mx-auto">

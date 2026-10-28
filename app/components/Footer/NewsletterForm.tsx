@@ -16,7 +16,7 @@ export default function NewsletterForm() {
     setStatus("submitting");
     const result = await submitLead("newsletter", { email });
     if (result.ok) {
-      trackEvent("newsletter_signup");
+      trackEvent("newsletter_signup", {});
       form.reset();
       setStatus("success");
     } else {

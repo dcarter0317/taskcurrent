@@ -1,6 +1,10 @@
+"use client";
+
+import { useSectionTracking } from "../../lib/useSectionTracking";
 export default function ProductStoryIntro(){
+    const sectionRef = useSectionTracking("how_it_works");
     return(
-        <div className="w-full max-w-content mx-auto tablet:py-6" id="product">
+        <div ref={sectionRef} className="w-full max-w-content mx-auto tablet:py-6" id="product">
           <div className="w-full max-w-content mx-auto flex flex-col py-2 text-center tablet:pb-0 tablet:pt-0">
             <div className="px-2 tablet:px-35 tablet:mb-6">
               <p className="uppercase text-sm font-semibold text-violet">How Taskcurrent Works</p>

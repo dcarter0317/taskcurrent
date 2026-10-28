@@ -5,6 +5,7 @@ import Image from "next/image";
 import TrackedLink from "../TrackedLink"
 import BillingToggle, { type BillingPeriod } from "../BillingToggle";
 import { trackEvent } from "../../lib/analytics";
+import { useSectionTracking } from "../../lib/useSectionTracking";
 
 interface PriceCardHeader {
     title: string;
@@ -34,8 +35,9 @@ const priceFeatures: PriceFeatureList[] = [
 export default function PricingSection(){
     const [period, setPeriod] = useState<BillingPeriod>("monthly");
     const annualDiscount = 0.2;
+    const sectionRef = useSectionTracking("pricing");
     return(
-            <div className="relative isolate w-full mx-auto py-6 tablet:py-15" id="pricing">
+            <div ref={sectionRef} className="relative isolate w-full mx-auto py-6 tablet:py-15" id="pricing">
               <div aria-hidden="true" className="absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2 bg-surface " />
               <div className="w-full max-w-content mx-auto flex flex-col py-2 pb-0 pt-0">
                 <div className="flex flex-col place-items-center px-2 tablet:px-0 tablet:mb-6 tablet:max-w-4xl tablet:mx-auto">

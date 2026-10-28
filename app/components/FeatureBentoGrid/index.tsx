@@ -1,3 +1,6 @@
+"use client";
+
+import { useSectionTracking } from "../../lib/useSectionTracking";
 import Image from 'next/image'
 
 interface IntegrationBlock {
@@ -14,8 +17,9 @@ const integrationBlocks: IntegrationBlock[] = [
 
 
 export default function FeatureBentoGrid(){
+    const sectionRef = useSectionTracking("features");
     return(
-        <div className="w-full max-w-content mx-auto tablet:py-15">
+        <div ref={sectionRef} className="w-full max-w-content mx-auto tablet:py-15">
           
           <div className="w-full max-w-content mx-auto flex flex-col py-2 text-center tablet:pb-0 tablet:pt-0">
             <div className="px-2 tablet:px-35 tablet:mb-6">
