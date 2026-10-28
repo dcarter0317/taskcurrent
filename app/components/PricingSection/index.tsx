@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import TrackedLink from "../TrackedLink"
 import BillingToggle, { type BillingPeriod } from "../BillingToggle";
+import { trackEvent } from "../../lib/analytics";
 
 interface PriceCardHeader {
     title: string;
@@ -43,7 +44,18 @@ export default function PricingSection(){
                   <p className="text-muted">Start small and add more automation as your team grows.</p>
                 </div>
                 <div className="px-2 mb-6">
-                  <BillingToggle onChange={setPeriod} />
+                    <BillingToggle
+                        onChange={(newPeriod) => {
+                            const previousPeriod = period;
+
+                            setPeriod(newPeriod);
+
+                            trackEvent("billing_toggle", {
+                                billing_period: newPeriod,
+                                previous_billing_period: previousPeriod,
+                            });
+                        }}
+                    />
                 </div>
                 <div className="px-2 grid gap-2 tablet:grid-cols-3 tablet:mb-6">
                  {priceCardHeaders.map((header, index) => (
