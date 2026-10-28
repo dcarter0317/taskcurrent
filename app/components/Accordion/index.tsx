@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image"
+import { trackEvent } from "../../lib/analytics";
 
 interface AccordionItem {
     id: string;

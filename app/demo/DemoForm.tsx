@@ -67,10 +67,14 @@ export default function DemoForm() {
             actions={[{ label: "Request My Demo", type: "submit" }]}
             actionsAlign="stretch"
             onStart={() => trackEvent("form_start", { form_name: "demo_request" })}
+            onError={(fieldName, errorType) =>
+                trackEvent("form_error", { form_name: "demo_request", field_name: fieldName, error_type: errorType })
+            }
             onSubmit={async (values) => {
                 setError(undefined);
                 const result = await submitLead("demo", values);
                 if (!result.ok) {
+                    trackEvent("form_error", { form_name: "demo_request", error_type: "server_error" });
                     setError(result.error);
                     return;
                 }

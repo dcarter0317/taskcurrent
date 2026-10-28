@@ -75,10 +75,14 @@ export default function EarlyAccessForm({ plan, billing }: EarlyAccessFormProps)
                     actions={[{ label: "Join Early Access", type: "submit" }]}
                     actionsAlign="stretch"
                     onStart={() => trackEvent("form_start", { form_name: "early_access" })}
+                    onError={(fieldName, errorType) =>
+                        trackEvent("form_error", { form_name: "early_access", field_name: fieldName, error_type: errorType })
+                    }
                     onSubmit={async (values) => {
                         setError(undefined);
                         const result = await submitLead("early_access", { ...values, plan, billing });
                         if (!result.ok) {
+                            trackEvent("form_error", { form_name: "early_access", error_type: "server_error" });
                             setError(result.error);
                             return;
                         }

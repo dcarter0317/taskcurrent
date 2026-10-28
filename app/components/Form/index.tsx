@@ -45,6 +45,8 @@ export interface CheckboxField extends BaseField {
     defaultValue?: boolean;
 }
 
+export type FormErrorType = "required" | "invalid_format" | "custom";
+
 export type FormField = TextField | TextareaField | SelectField | CheckboxField;
 
 export interface FormAction
@@ -66,6 +68,11 @@ export interface FormProps {
     formError?: string;
     /** Called once, the first time any field receives focus. */
     onStart?: () => void;
+    /**
+     * Called for each field that fails validation on submit. Reports only the field name and
+     * the kind of failure, never the value or message, so it is safe to send to analytics.
+     */
+    onError?: (fieldName: string, errorType: FormErrorType) => void;
     actionsAlign?: "start" | "end" | "stretch";
     className?: string;
 }
@@ -90,18 +97,35 @@ function initialValues(fields: FormField[]): FormValues {
     );
 }
 
-function checkField(field: FormField, values: FormValues): string | undefined {
+interface FieldIssue {
+    type: FormErrorType;
+    message: string;
+}
+
+function findIssue(field: FormField, values: FormValues): FieldIssue | undefined {
     const value = values[field.name];
     const empty = field.type === "checkbox" ? value !== true : value === "";
     if (field.required && empty) {
-        return field.type === "checkbox"
-            ? `Please check “${field.label}”.`
-            : `${field.label} is required.`;
+        return {
+            type: "required",
+            message:
+                field.type === "checkbox"
+                    ? `Please check “${field.label}”.`
+                    : `${field.label} is required.`,
+        };
     }
     if (field.type === "email" && value && !/^\S+@\S+\.\S+$/.test(String(value))) {
-        return "Enter a valid email address, like name@company.com.";
+        return {
+            type: "invalid_format",
+            message: "Enter a valid email address, like name@company.com.",
+        };
     }
-    return field.validate?.(value, values);
+    const message = field.validate?.(value, values);
+    return message ? { type: "custom", message } : undefined;
+}
+
+function checkField(field: FormField, values: FormValues): string | undefined {
+    return findIssue(field, values)?.message;
 }
 
 function ErrorMessage({ id, children }: { id: string; children: string }) {
@@ -120,6 +144,7 @@ export default function Form({
     errors: externalErrors,
     formError,
     onStart,
+    onError,
     actionsAlign = "start",
     className = "",
 }: FormProps) {
@@ -161,8 +186,10 @@ export default function Form({
         const current = Object.fromEntries(fields.map((f) => [f.name, valueOf(f)]));
         const found: Record<string, string> = {};
         for (const f of fields) {
-            const message = checkField(f, current);
-            if (message) found[f.name] = message;
+            const issue = findIssue(f, current);
+            if (!issue) continue;
+            found[f.name] = issue.message;
+            onError?.(f.name, issue.type);
         }
         setErrors(found);
         if (Object.keys(found).length) {
