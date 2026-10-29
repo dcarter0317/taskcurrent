@@ -1,6 +1,11 @@
 import { test, expect } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
+  await page.route(/googletagmanager\.com/, (r) => r.fulfill({ status: 200, contentType: "application/javascript", body: "" }));
+  // Pre-answer the cookie banner so it doesn't cover the controls under test.
+  await page.addInitScript(() =>
+    localStorage.setItem("tc_consent_v1", JSON.stringify({ analytics: true, marketing: true })),
+  );
   await page.goto("/");
 });
 
@@ -74,11 +79,10 @@ test.describe("navigation", () => {
     test.skip(!!isMobile, "desktop only");
     const nav = page.getByRole("navigation", { name: "Main navigation" });
     for (const [label, href] of [
-      ["Product", "#products"],
-      ["Solutions", "#solutions"],
+      ["Product", "#product"],
       ["Integrations", "#integrations"],
       ["Pricing", "#pricing"],
-      ["Resources", "#resources"],
+      ["FAQ", "#faq"],
     ]) {
       await expect(nav.getByRole("link", { name: label, exact: true })).toHaveAttribute("href", href);
     }
@@ -100,7 +104,7 @@ test.describe("navigation", () => {
     await nav.getByRole("link", { name: "Integrations", exact: true }).click();
     await expect(page.locator("#integrations")).toBeInViewport();
     await nav.getByRole("link", { name: "Product", exact: true }).click();
-    await expect(page.locator("#products")).toBeInViewport();
+    await expect(page.locator("#product")).toBeInViewport();
   });
 
   test("logo links home", async ({ page }) => {
@@ -116,7 +120,7 @@ test.describe("navigation", () => {
     await expect(toggle).toBeVisible();
     await expect(nav.getByRole("link", { name: "Pricing", exact: true })).toBeHidden();
     await toggle.click();
-    for (const label of ["Product", "Solutions", "Integrations", "Pricing", "Resources"]) {
+    for (const label of ["Product", "Integrations", "Pricing", "FAQ"]) {
       await expect(nav.getByRole("link", { name: label, exact: true })).toBeVisible();
     }
     await toggle.click();
@@ -322,8 +326,8 @@ test.describe("early access", () => {
 
   test("submits the form, fires analytics and shows the success state", async ({ page }) => {
     await page.addInitScript(() => {
-      (window as unknown as { events: unknown[] }).events = [];
-      window.gtag = (_c, name, params) => (window as unknown as { events: unknown[] }).events.push({ name, params });
+      const w = window as unknown as { dataLayer: unknown[] };
+      w.dataLayer = [];
     });
     await page.goto("/early-access?plan=growth&billing=annual");
     await page.getByLabel("Full name").fill("Sarah Mitchell");
@@ -333,18 +337,18 @@ test.describe("early access", () => {
     await page.getByLabel("What would you automate first?").selectOption("lead_followup");
     await page.getByRole("button", { name: "Join Early Access" }).click();
     await expect(page.getByRole("heading", { name: "You're on the list." })).toBeVisible();
-    const events = await page.evaluate(() => (window as unknown as { events: { name: string; params: object }[] }).events);
+    const events = await page.evaluate(() =>
+      (window as unknown as { dataLayer: { event?: string }[] }).dataLayer.filter((e) => typeof e.event === "string" && !e.event.startsWith("gtm.")),
+    );
     expect(events).toEqual([
-      { name: "form_start", params: { form_name: "early_access" } },
+      { event: "form_start", form_name: "early_access" },
       {
-        name: "generate_lead",
-        params: {
-          lead_type: "early_access",
-          company_size: "6-20",
-          automation_need: "lead_followup",
-          plan_interest: "growth",
-          billing_interest: "annual",
-        },
+        event: "generate_lead",
+        lead_type: "early_access",
+        company_size: "6-20",
+        automation_need: "lead_followup",
+        plan_interest: "growth",
+        billing_interest: "annual",
       },
     ]);
   });
