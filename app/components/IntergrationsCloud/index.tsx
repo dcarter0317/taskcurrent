@@ -53,7 +53,7 @@ export default function IntergrationsCloud(){
               </div>
               <div className="w-full max-w-content mx-auto flex flex-col py-2 px-2 tablet:justify-center tablet:pb-0 tablet:pt-0">
                  <TrackedLink
-                    href="/demo"
+                    href="/demo?cta_destination=integrations_book_demo"
                     ctaName="book_demo"
                     ctaLocation="integrations"
                     className="text-violet font-semibold flex tablet:items-center tablet:justify-center gap-0.5"

@@ -20,7 +20,7 @@ export default function FinalCTASection() {
            <p className="py-2 tablet:px-40 text-center">Build your first workflow in minutes and spend more time on the work that grows your business.</p>
            <div className="flex flex-col justify-center items-center py-2 gap-2 tablet:flex-row">
               <TrackedLink
-                href="/early-access"
+                href="/early-access?cta_destination=final_cta_get_early_access"
                 ctaName="get_early_access"
                 ctaLocation="final_cta"
                 className="w-full tablet:w-auto text-center rounded-button bg-brand px-2 py-1 text-small font-semibold text-white transition-colors hover:bg-brand-hover tablet:bg-surface tablet:text-ink tablet:hover:bg-surface-alt"
@@ -28,7 +28,7 @@ export default function FinalCTASection() {
                 Get Early Access
               </TrackedLink>
                 <TrackedLink
-                href="/demo"
+                href="/demo?cta_destination=final_cta_book_demo"
                 ctaName="book_demo"
                 ctaLocation="final_cta"
                 className="w-full tablet:w-auto text-center rounded-button bg-brand-soft px-2 py-1 text-small font-semibold text-ink shadow-card border border-subtle hover:bg-brand-hover tablet:bg-dark-surface tablet:text-surface tablet:border-dark-border tablet:hover:bg-dark-surface-2"

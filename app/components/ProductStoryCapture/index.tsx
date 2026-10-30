@@ -24,7 +24,7 @@ export default function ProductStoryCapture(){
                </li>
               </ul>
              <TrackedLink
-                href="/demo"
+                href="/demo?cta_destination=product_story_capture_book_demo"
                 ctaName="book_demo"
                 ctaLocation="product_story_capture"
                 className="text-violet font-semibold flex items-center gap-0.5"

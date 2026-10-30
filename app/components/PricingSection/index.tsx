@@ -75,7 +75,7 @@ export default function PricingSection(){
                         <p>{header.description}</p>
                         <p><span className="font-bold text-5xl">${period === "annual" ? Math.round(header.price * (1 - annualDiscount)) : header.price}</span><span className="text-sm text-muted">&nbsp;/month{period === "annual" ? ", billed annually" : ""}</span></p>
                         <TrackedLink
-                          href={`/early-access?plan=${header.title.toLowerCase()}&billing=${period}`}
+                          href={`/early-access?plan=${header.title.toLowerCase()}&billing=${period}&cta_destination=pricing_${header.title.toLowerCase()}_get_early_access`}
                           ctaName="get_early_access"
                           ctaLocation="pricing"
                           eventParams={{ plan_interest: header.title.toLowerCase(), billing_interest: period }}
@@ -96,7 +96,7 @@ export default function PricingSection(){
               </div>
               <div className="w-full max-w-content mx-auto flex flex-col py-2 px-2 tablet:justify-center tablet:pb-0 tablet:pt-0">
                  <TrackedLink
-                    href="/demo"
+                    href="/demo?cta_destination=pricing_compare_features"
                     ctaName="book_demo"
                     ctaLocation="pricing"
                     className="text-violet font-semibold flex tablet:items-center tablet:justify-center gap-0.5"

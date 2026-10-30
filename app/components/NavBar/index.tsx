@@ -57,7 +57,7 @@ export default function NavBar({ showLinks = false }: { showLinks?: boolean }) {
                 Log in
               </a>
               <TrackedLink
-                href="/demo"
+                href="/demo?cta_destination=nav_book_demo"
                 ctaName="book_demo"
                 ctaLocation="nav"
                 className="hidden laptop:block rounded-button bg-brand-soft border border-subtle px-2 py-1 text-small font-semibold text-ink shadow-card hover:bg-brand-hover"
@@ -65,7 +65,7 @@ export default function NavBar({ showLinks = false }: { showLinks?: boolean }) {
                 Book a Demo
               </TrackedLink>
               <TrackedLink
-                href="/early-access"
+                href="/early-access?cta_destination=nav_get_early_access"
                 ctaName="get_early_access"
                 ctaLocation="nav"
                 className="rounded-button bg-brand px-2 py-1 text-small font-semibold text-white transition-colors hover:bg-brand-hover"

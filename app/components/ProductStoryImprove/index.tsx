@@ -24,7 +24,7 @@ export default function ProductStoryImprove() {
            </li>
           </ul>
          <TrackedLink
-            href="/demo"
+            href="/demo?cta_destination=product_story_improve_book_demo"
             ctaName="book_demo"
             ctaLocation="product_story_improve"
             className="text-violet font-semibold flex items-center gap-0.5"

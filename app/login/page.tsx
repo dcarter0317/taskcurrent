@@ -15,7 +15,7 @@ export default function Login() {
                 <LoginForm />
                 <p className="mt-3 text-small text-muted">
                     New to TaskCurrent?{" "}
-                    <Link href="/early-access" className="font-semibold text-brand-hover hover:underline">
+                    <Link href="/early-access?cta_destination=login_request_early_access" className="font-semibold text-brand-hover hover:underline">
                         Get early access
                     </Link>
                 </p>

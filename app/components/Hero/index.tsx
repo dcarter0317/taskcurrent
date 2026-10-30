@@ -29,7 +29,7 @@ export default function Hero() {
            <p className="py-2 tablet:max-w-51.5">Connect your leads, appointments, customers, and everyday tools so repetitive work happens automatically.</p>
            <div className="flex flex-col items-center py-2 gap-2 tablet:flex-row">
               <TrackedLink
-                href="/early-access"
+                href="/early-access?cta_destination=hero_get_early_access"
                 ctaName="get_early_access"
                 ctaLocation="hero"
                 className="w-full tablet:w-auto text-center rounded-button bg-brand px-2 py-1 text-small font-semibold text-white transition-colors hover:bg-brand-hover tablet:bg-surface tablet:text-ink tablet:hover:bg-surface-alt"
@@ -37,7 +37,7 @@ export default function Hero() {
                 Get Early Access
               </TrackedLink>
                 <TrackedLink
-                href="/demo"
+                href="/demo?cta_destination=hero_book_demo"
                 ctaName="book_demo"
                 ctaLocation="hero"
                 className="w-full tablet:w-auto text-center rounded-button bg-brand-soft px-2 py-1 text-small font-semibold text-ink shadow-card border border-subtle hover:bg-brand-hover tablet:bg-dark-surface tablet:text-surface tablet:border-dark-border tablet:hover:bg-dark-surface-2"

@@ -72,7 +72,7 @@ export default function WorkFlowBuilderShowcase(){
               </div>
               <div className="w-full max-w-content mx-auto flex flex-col py-2 text-center tablet:pb-0 tablet:pt-0">
                  <TrackedLink
-                    href="/demo"
+                    href="/demo?cta_destination=workflow_showcase_book_demo"
                     ctaName="book_demo"
                     ctaLocation="workflow_showcase"
                     className="text-cyan font-semibold flex items-center justify-center gap-0.5"
