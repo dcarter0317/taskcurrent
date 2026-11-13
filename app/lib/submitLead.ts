@@ -10,12 +10,14 @@ export type SubmitResult = { ok: true } | { ok: false; error: string };
  */
 export async function submitLead(kind: LeadKind, payload: Record<string, unknown>): Promise<SubmitResult> {
     try {
-        // TODO: replace with the real backend call, e.g.
-        // const res = await fetch("/api/leads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
-        // if (!res.ok) return { ok: false, error: "..." };
         const attribution = getAttribution();
         const body = { kind, ...payload, ...(attribution && { attribution }) };
-        console.log(body);
+        const res = await fetch("/api/leads", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+        });
+        if (!res.ok) return { ok: false, error: "Something went wrong. Please try again." };
         return { ok: true };
     } catch {
         return { ok: false, error: "Something went wrong. Please try again." };
